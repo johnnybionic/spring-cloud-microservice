@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: default
+  application:
+    name: cloud-config-example-client
+  cloud:
+    config:
+      uri: http://localhost:8001
+#this server's port
+server:
+  port: 7999
