@@ -1,0 +1,6 @@
+spring:
+  data:
+    entry:
+      one: hello
+lucky-word: Rabbit's Foot
+another-word: daredevil
