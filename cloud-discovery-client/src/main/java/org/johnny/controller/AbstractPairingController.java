@@ -1,9 +1,11 @@
 package org.johnny.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -19,20 +21,29 @@ import java.net.URISyntaxException;
 public abstract class AbstractPairingController {
 
     private static final String PERSON_SERVICE = "PERSON-SERVICE";
-    private static final String PERSON_NAME_PATH = "/person/name";
+    //private static final String PERSON_NAME_PATH = "/person/name";
     private static final String ASSIGNMENT_SERVICE = "ASSIGNMENT-SERVICE";
-    private static final String ASSIGNMENT_PATH = "/assignments";
+    //private static final String ASSIGNMENT_PATH = "/assignments";
 
-    final RestTemplate restTemplate;
+    @Value("${person.service.name}")
+    private String personServiceName;
+
+    @Value("${person.service.subpath}")
+    private String personServiceSubPath;
+
+    @Value("${assignment.service.name}")
+    private String assignmentServiceName;
+
+    @Value("${assignment.service.subpath}")
+    private String assignmentServiceSubPath;
+
     private URI personPath;
     private URI assignmentPath;
 
-    public AbstractPairingController() throws URISyntaxException {
-        this.restTemplate = new RestTemplate();
+    final RestTemplate restTemplate;
 
-        // get these from configuration service
-        personPath = new URI(PERSON_NAME_PATH);
-        assignmentPath = new URI(ASSIGNMENT_PATH);
+    public AbstractPairingController() {
+        this.restTemplate = new RestTemplate();
     }
 
     /**
@@ -52,13 +63,21 @@ public abstract class AbstractPairingController {
     }
 
     private String getPerson() {
-        return service(PERSON_SERVICE, personPath);
+        return service(personServiceName, personPath);
     }
 
     private String getAssignment() {
-        return service(ASSIGNMENT_SERVICE, assignmentPath);
+        return service(assignmentServiceName, assignmentPath);
     }
 
     protected abstract String service(String personService, URI personPath);
 
+    /*
+    * The config data is not available until after the bean has been constructed.
+     */
+    @PostConstruct
+    public void finaliseSetup() throws URISyntaxException {
+        personPath = new URI(personServiceSubPath);
+        assignmentPath = new URI(assignmentServiceSubPath);
+    }
 }

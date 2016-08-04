@@ -2,13 +2,10 @@
 # itself a different name when registering with Eureka
 ---
 spring:
-  application:
-    name: discovery-client
-
   profiles:
     active: default
-
+  application:
+    name: discovery-client
   cloud:
     config:
       uri: http://localhost:8001
-    
