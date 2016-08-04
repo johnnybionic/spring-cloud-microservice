@@ -19,9 +19,9 @@ import java.util.List;
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @RestController
-@RequestMapping("/service")
+@RequestMapping("/person")
 @Slf4j
-public class ServiceController {
+public class PersonController {
 
     private static final String PERSON_SERVICE = "PERSON-SERVICE";
     private static final String PERSON_NAME_PATH = "/person/name";
@@ -31,7 +31,7 @@ public class ServiceController {
     private URI personPath;
 
     @Autowired
-    public ServiceController(DiscoveryClient discoveryClient) throws URISyntaxException {
+    public PersonController(DiscoveryClient discoveryClient) throws URISyntaxException {
         this.discoveryClient = discoveryClient;
         personPath = new URI(PERSON_NAME_PATH);
         this.restTemplate = new RestTemplate();

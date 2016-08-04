@@ -11,4 +11,5 @@ public class CloudEurekaClientPeopleServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CloudEurekaClientPeopleServiceApplication.class, args);
 	}
+
 }

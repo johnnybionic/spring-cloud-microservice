@@ -1,6 +1,8 @@
 package org.johnny.controller;
 
 import org.johnny.domain.Person;
+import org.johnny.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +20,12 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequestMapping("/person")
 public class PersonController {
 
-    private Set<Person> people;
+    private final PersonService personService;
+
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     /**
      * Returns a random person.
@@ -27,7 +34,7 @@ public class PersonController {
      */
     @RequestMapping("")
     public Person getPerson() {
-        return getRandomPerson();
+        return personService.getRandomPerson();
     }
 
     /**
@@ -37,20 +44,7 @@ public class PersonController {
      */
     @RequestMapping("/name")
     public String getName() {
-        return getRandomPerson().getFullName();
+        return personService.getRandomName();
     }
 
-    private Person getRandomPerson() {
-        int index = ThreadLocalRandom.current().nextInt(people.size());
-        return (Person) people.toArray()[index];
-    }
-
-    @PostConstruct
-    public void createPeople() {
-        people = new HashSet<>();
-        people.add(new Person(1, "John", "Davis"));
-        people.add(new Person(2, "Don", "Javish"));
-        people.add(new Person(3, "Harry", "Hoo"));
-        people.add(new Person(4, "Arthur", "Negus"));
-    }
 }
