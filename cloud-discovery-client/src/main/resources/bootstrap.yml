@@ -4,4 +4,11 @@
 spring:
   application:
     name: discovery-client
+
+  profiles:
+    active: default
+
+  cloud:
+    config:
+      uri: http://localhost:8001
     
