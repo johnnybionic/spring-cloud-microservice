@@ -7,4 +7,4 @@ and introduced new features
 - the first uses DiscoveryClient directly
 - the second uses LoadBalancerClient and Ribbon
 - the third uses Feign clients
-- the fourth uses services, which are annotated with Hystrix, one of which intentionally fails with a 404 to cause a default method to be invoked 
+- the fourth uses services, which are annotated with Hystrix, one of which intentionally fails with a 404 to cause a fallback method to be invoked 
