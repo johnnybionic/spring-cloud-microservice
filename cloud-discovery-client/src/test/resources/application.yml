@@ -1,0 +1,9 @@
+person:
+  service:
+    name: PERSON-SERVICE
+    subpath: /person/name
+
+assignment:
+  service:
+    name: ASSIGNMENT-SERVICE
+    subpath: /assignments

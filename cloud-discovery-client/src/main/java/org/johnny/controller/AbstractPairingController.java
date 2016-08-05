@@ -1,5 +1,7 @@
 package org.johnny.controller;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,29 +20,30 @@ import java.net.URISyntaxException;
  * Created by johnny on 04/08/2016.
  */
 @Slf4j
+@Setter
 public abstract class AbstractPairingController {
 
-    private static final String PERSON_SERVICE = "PERSON-SERVICE";
-    //private static final String PERSON_NAME_PATH = "/person/name";
-    private static final String ASSIGNMENT_SERVICE = "ASSIGNMENT-SERVICE";
-    //private static final String ASSIGNMENT_PATH = "/assignments";
+    static final String ASSIGNED_TO = "\"%s\" will be assigned to %s";
 
     @Value("${person.service.name}")
-    private String personServiceName;
+    protected String personServiceName;
 
     @Value("${person.service.subpath}")
     private String personServiceSubPath;
 
     @Value("${assignment.service.name}")
-    private String assignmentServiceName;
+    protected String assignmentServiceName;
 
     @Value("${assignment.service.subpath}")
     private String assignmentServiceSubPath;
 
+    @Getter
     private URI personPath;
+    @Getter
     private URI assignmentPath;
 
-    final RestTemplate restTemplate;
+    @Setter
+    RestTemplate restTemplate;
 
     public AbstractPairingController() {
         this.restTemplate = new RestTemplate();
@@ -56,7 +59,7 @@ public abstract class AbstractPairingController {
         String person = getPerson();
         String assignment = getAssignment();
 
-        String message = String.format("\"%s\" will be assigned to %s", person, assignment);
+        String message = String.format(ASSIGNED_TO, person, assignment);
         log.info(message);
 
         return message;
@@ -70,7 +73,7 @@ public abstract class AbstractPairingController {
         return service(assignmentServiceName, assignmentPath);
     }
 
-    protected abstract String service(String personService, URI personPath);
+    protected abstract String service(String service, URI path);
 
     /*
     * The config data is not available until after the bean has been constructed.
