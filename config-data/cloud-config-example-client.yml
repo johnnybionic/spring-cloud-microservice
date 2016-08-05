@@ -4,3 +4,9 @@ spring:
       one: hello
 lucky-word: Rabbit's Foot
 another-word: daredevil
+---
+#ConfigurationProperties example
+sample:
+  firstWord: first
+  second-word: second
+  THIRD_WORD: third
