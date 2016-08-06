@@ -2,8 +2,8 @@ spring:
   data:
     entry:
       one: hello
-lucky-word: Rabbit's Foot
-#lucky-word: horseshoe
+#lucky-word: Rabbit's Foot
+lucky-word: horseshoe
 another-word: daredevil
 ---
 #ConfigurationProperties example
