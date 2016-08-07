@@ -2,7 +2,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${spring.eureka.uri:http://localhost:9999/eureka/}
+      defaultZone: ${spring.eureka.uri:http://localhost:8010/eureka/}
 ---
 spring:
   application:
