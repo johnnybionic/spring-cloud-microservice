@@ -1,0 +1,4 @@
+---
+spring:
+  eureka:
+    uri: http://localhost:8010/eureka/
