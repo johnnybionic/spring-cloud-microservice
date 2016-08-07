@@ -1,11 +1,11 @@
 package org.johnny.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.johnny.service.ConfigurationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,23 +19,20 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequestMapping("/assignments")
 public class AssignmentController {
 
-    private Set<String> words;
+    private final ConfigurationService configurationService;
+
+    @Autowired
+    public AssignmentController(ConfigurationService configurationService) {
+        this.configurationService = configurationService;
+    }
 
     @RequestMapping("")
     public String getAssignment() {
-        int index = ThreadLocalRandom.current().nextInt(words.size());
-        String assignment = (String) words.toArray()[index];
+        Set<String> assignments = configurationService.getAssignments();
+        int index = ThreadLocalRandom.current().nextInt(assignments.size());
+        String assignment = (String) assignments.toArray()[index];
         log.info("Assignment is [{}]", assignment);
         return assignment;
     }
 
-    @PostConstruct
-    public void setWords() {
-        words = new HashSet<>();
-        words.add("cooking");
-        words.add("washing");
-        words.add("cleaning");
-        words.add("mopping");
-        words.add("dusting");
-    }
 }

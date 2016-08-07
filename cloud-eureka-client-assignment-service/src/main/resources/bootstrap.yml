@@ -1,5 +1,13 @@
 ---
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${spring.eureka.uri:http://localhost:9999/eureka/}
+---
 spring:
   application:
     name: assignment-service
-    
+  cloud:
+    config:
+      uri: ${SPRING_CONFIG_URI:http://localhost:8001}
+

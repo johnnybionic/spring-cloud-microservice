@@ -3,3 +3,6 @@ eureka:
   client:
     enabled: false
 
+---
+assignments: cooking,washing,cleaning,dusting,mopping
+
