@@ -1,6 +1,11 @@
 # Depending on which profile is active, the application gives 
 # itself a different name when registering with Eureka
 ---
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka/
+---
 spring:
   profiles:
     active: default
@@ -8,4 +13,4 @@ spring:
     name: discovery-client
   cloud:
     config:
-      uri: http://localhost:8001
+      uri: ${SPRING_CONFIG_URI:http://localhost:8001}
