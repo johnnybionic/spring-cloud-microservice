@@ -1,0 +1,18 @@
+---
+logging:
+  level:
+    root: INFO
+    org.johnny: DEBUG
+---
+spring:
+  data:
+    entry:
+      one: test-hello
+lucky-word: test-horseshoe
+another-word: test-daredevil
+---
+#ConfigurationProperties example
+sample:
+  firstWord: test-first
+  second-word: test-second
+  THIRD_WORD: test-third

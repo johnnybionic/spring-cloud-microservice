@@ -1,3 +1,5 @@
+---
+# cloud-related configuration is kept separate from application config
 spring:
   profiles:
     active: default
@@ -5,7 +7,4 @@ spring:
     name: cloud-config-example-client
   cloud:
     config:
-      uri: http://localhost:8001
-#this server's port
-server:
-  port: 7999
+      uri: ${SPRING_CONFIG_URI:http://localhost:8001}

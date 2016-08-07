@@ -1,0 +1,9 @@
+---
+logging:
+  level:
+    root: INFO
+    org.johnny: INFO
+---
+#this server's port
+server:
+  port: 7999
