@@ -13,10 +13,10 @@ import java.net.URISyntaxException;
 
 /**
  * There's some shared constants and variables. Generally there
- * wouldn't be two controllers doing the same thing, but then, this is jsut a sample app ...
- *
+ * wouldn't be two controllers doing the same thing, but then, this is just a sample app ...
+ * <p>
  * Plus I was interested to see if a template controller would work. It does :)
- *
+ * <p>
  * Created by johnny on 04/08/2016.
  */
 @Slf4j
@@ -24,26 +24,21 @@ import java.net.URISyntaxException;
 public abstract class AbstractPairingController {
 
     static final String ASSIGNED_TO = "\"%s\" will be assigned to %s";
-
+    @Getter
+    private RestTemplate restTemplate;
+    @Getter
     @Value("${person.service.name}")
-    protected String personServiceName;
-
+    private String personServiceName;
     @Value("${person.service.subpath}")
     private String personServiceSubPath;
-
     @Value("${assignment.service.name}")
-    protected String assignmentServiceName;
-
+    private String assignmentServiceName;
     @Value("${assignment.service.subpath}")
     private String assignmentServiceSubPath;
-
     @Getter
     private URI personPath;
     @Getter
     private URI assignmentPath;
-
-    @Setter
-    RestTemplate restTemplate;
 
     public AbstractPairingController() {
         this.restTemplate = new RestTemplate();
@@ -56,27 +51,47 @@ public abstract class AbstractPairingController {
      */
     @RequestMapping("")
     public String getPairing() {
-        String person = getPerson();
-        String assignment = getAssignment();
+        final String person = getPerson();
+        final String assignment = getAssignment();
 
-        String message = String.format(ASSIGNED_TO, person, assignment);
+        final String message = String.format(ASSIGNED_TO, person, assignment);
         log.info(message);
 
         return message;
     }
 
+    /**
+     * Gets the person.
+     *
+     * @return the person
+     */
     private String getPerson() {
         return service(personServiceName, personPath);
     }
 
+    /**
+     * Gets the assignment.
+     *
+     * @return the assignment
+     */
     private String getAssignment() {
         return service(assignmentServiceName, assignmentPath);
     }
 
+    /**
+     * Template method to retrieve a String from the required service. Implementing classes
+     * use different techniques to implement the method, e.g. load balaning, discovery etc.
+     *
+     * @param service the service required
+     * @param path    the path
+     * @return the String
+     */
     protected abstract String service(String service, URI path);
 
-    /*
-    * The config data is not available until after the bean has been constructed.
+    /**
+     * The config data is not available until after the bean has been constructed.
+     *
+     * @throws URISyntaxException if the URIs are bad
      */
     @PostConstruct
     public void finaliseSetup() throws URISyntaxException {

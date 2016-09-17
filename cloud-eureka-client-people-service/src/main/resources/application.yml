@@ -1,5 +1,5 @@
 ---
 server:
-#  port: ${PORT:${SERVER_PORT:0}}   # Select any available port if neither port nor server port are specified.
-  port: 8201
+  port: ${PORT:${SERVER_PORT:0}}   # Select any available port if neither port nor server port are specified.
+#  port: 8201
 

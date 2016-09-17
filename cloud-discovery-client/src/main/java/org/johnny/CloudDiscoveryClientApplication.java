@@ -12,7 +12,12 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 @EnableHystrix
 public class CloudDiscoveryClientApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CloudDiscoveryClientApplication.class, args);
-	}
+    /**
+     * Entry point.
+     *
+     * @param args command line
+     */
+    public static void main(final String[] args) {
+        SpringApplication.run(CloudDiscoveryClientApplication.class, args);
+    }
 }

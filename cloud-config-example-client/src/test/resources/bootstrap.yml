@@ -1,0 +1,13 @@
+---
+# cloud-related configuration is kept separate from application config
+# for tests, disable config lookup and set 'junit' as the default profile
+spring:
+  profiles:
+    active: junit
+  application:
+    name: cloud-config-example-client
+  cloud:
+    config:
+      uri: null
+      enabled: false
+

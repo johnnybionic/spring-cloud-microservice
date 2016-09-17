@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 /**
  * Represents a person.
- *
+ * <p>
  * Created by johnny on 03/08/2016.
  */
 @Entity
@@ -18,6 +18,8 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
+
+    public static final String FULL_NAME_FORMAT = "%s %s";
 
     @Id
     @GeneratedValue
@@ -27,12 +29,17 @@ public class Person {
 
     private String lastName;
 
-    public Person(String firstName, String lastName) {
+    public Person(final String firstName, final String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    /**
+     * Helper method to get the full name.
+     *
+     * @return the formatted full name
+     */
     public String getFullName() {
-        return String.format("%s %s", firstName, lastName);
+        return String.format(FULL_NAME_FORMAT, firstName, lastName);
     }
 }

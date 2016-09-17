@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 
 /**
  * Loads sample data into the H2 database at runtime. Avoids being loaded during tests.
- *
+ * <p>
  * Created by johnny on 04/08/2016.
  */
 @Component
@@ -20,10 +20,13 @@ public class SampleDataLoader {
     private final PersonRepository personRepository;
 
     @Autowired
-    public SampleDataLoader(PersonRepository personRepository) {
+    public SampleDataLoader(final PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
+    /**
+     * Simplest way to add data after application has started up.
+     */
     @PostConstruct
     public void createSamplePeople() {
         personRepository.save(new Person("John", "Davis"));

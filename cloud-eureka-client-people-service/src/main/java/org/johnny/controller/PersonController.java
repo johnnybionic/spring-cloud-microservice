@@ -6,14 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
- * Used by clients to retrieve information about people.
- *
+ * Used by clients to retrieve a Person.
+ * <p>
  * Created by johnny on 03/08/2016.
  */
 @RestController
@@ -23,18 +18,18 @@ public class PersonController {
     private final PersonService personService;
 
     @Autowired
-    public PersonController(PersonService personService) {
+    public PersonController(final PersonService personService) {
         this.personService = personService;
     }
 
     /**
-     * Returns a random person.
+     * Returns a person.
      *
      * @return the Person
      */
     @RequestMapping("")
     public Person getPerson() {
-        return personService.getRandomPerson();
+        return personService.getPerson();
     }
 
     /**
@@ -44,7 +39,7 @@ public class PersonController {
      */
     @RequestMapping("/name")
     public String getName() {
-        return personService.getRandomName();
+        return personService.getName();
     }
 
 }

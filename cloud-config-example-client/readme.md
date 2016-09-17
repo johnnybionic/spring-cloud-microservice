@@ -1,3 +1,5 @@
+# cloud-config-example-client
+
 This simple client uses the cloud config server directly, i.e.
 no service discovery etc.
 

@@ -10,9 +10,9 @@ import java.net.URI;
 
 /**
  * A controller that demonstrates Hystrix fallback.
- *
+ * <p>
  * https://github.com/Netflix/Hystrix/tree/master/hystrix-contrib/hystrix-javanica
- *
+ * <p>
  * Created by johnny on 05/08/2016.
  */
 @RestController
@@ -24,14 +24,15 @@ public class HystrixPairingController extends AbstractPairingController {
     private final HystrixAssignmentService assignmentService;
 
     @Autowired
-    public HystrixPairingController(HystrixPersonService personService, HystrixAssignmentService assignmentService) {
+    public HystrixPairingController(final HystrixPersonService personService,
+                                    final HystrixAssignmentService assignmentService) {
         this.personService = personService;
         this.assignmentService = assignmentService;
     }
 
     @Override
-    protected String service(String service, URI path) {
-        if (service.equals(personServiceName)) {
+    protected String service(final String service, final URI path) {
+        if (service.equals(getPersonServiceName())) {
             return personService.getName();
         }
         else {

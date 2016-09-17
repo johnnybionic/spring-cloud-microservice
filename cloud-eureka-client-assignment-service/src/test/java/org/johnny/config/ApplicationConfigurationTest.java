@@ -1,6 +1,6 @@
-package org.johnny.service;
+package org.johnny.config;
 
-import org.johnny.service.ConfigurationService;
+import org.johnny.config.ApplicationConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ConfigurationServiceTest {
+public class ApplicationConfigurationTest {
 
     @Autowired
-    private ConfigurationService configurationService;
+    private ApplicationConfiguration configurationService;
 
     @Test
     public void thatAssignmentsAreLoadedAsCollection() {

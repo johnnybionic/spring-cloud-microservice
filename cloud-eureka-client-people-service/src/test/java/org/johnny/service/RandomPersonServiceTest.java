@@ -9,13 +9,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
+ * Tests the service that returns random people.
+ * <p>
  * This is an integration test, as a real repository is used.
- *
+ * <p>
  * Created by johnny on 04/08/2016.
  */
 @ActiveProfiles("junit")
@@ -26,20 +27,20 @@ import static org.junit.Assert.*;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:beforeTestRun.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:afterTestRun.sql")
 })
-public class PersonServiceTest {
+public class RandomPersonServiceTest {
 
     @Autowired
-    private PersonService personService;
+    private RandomPersonService personService;
 
     @Test
     public void thatRandomPersonIsRetrieved() {
-        Person person = personService.getRandomPerson();
+        final Person person = personService.getPerson();
         assertNotNull(person);
     }
 
     @Test
     public void thatRandomPersonNameIsRetrieved() {
-        String name = personService.getRandomName();
+        final String name = personService.getName();
         assertNotNull(name);
     }
 

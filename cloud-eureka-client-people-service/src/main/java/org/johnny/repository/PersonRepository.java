@@ -6,13 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-/**
- * Repository for Person.
- *
- * Created by johnny on 04/08/2016.
- */
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    /**
+     * Find all Person IDs.
+     * @return a list of the IDs
+     */
     @Query("select p.id from Person p")
     List<Long> findAllIds();
 }

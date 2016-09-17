@@ -10,10 +10,20 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class CloudZuulGatewayApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CloudZuulGatewayApplication.class, args);
-	}
+    /**
+     * Entry point.
+     *
+     * @param args command line
+     */
+    public static void main(final String[] args) {
+        SpringApplication.run(CloudZuulGatewayApplication.class, args);
+    }
 
+    /**
+     * Configuration - returns a Filter that will be placed in the chain by Spring.
+     *
+     * @return a Filter
+     */
     @Bean
     public SimpleFilter simpleFilter() {
         return new SimpleFilter();

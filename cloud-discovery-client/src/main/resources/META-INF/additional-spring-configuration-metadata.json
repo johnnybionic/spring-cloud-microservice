@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "person.service.name",
+      "type": "java.lang.String",
+      "description": "Description for person.service.name."
+    }
+  ]
+}

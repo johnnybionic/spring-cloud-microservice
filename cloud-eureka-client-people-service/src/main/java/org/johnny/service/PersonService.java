@@ -1,37 +1,24 @@
 package org.johnny.service;
 
 import org.johnny.domain.Person;
-import org.johnny.repository.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Service to provide Person operations.
- *
- * Created by johnny on 04/08/2016.
+ * Gets a Person. The implementation determines which Person, e.g. randomly chosen, next in line etc.
+ * Created by johnny on 16/09/2016.
  */
-@Service
-public class PersonService {
+public interface PersonService {
 
-    private final PersonRepository personRepository;
+    /**
+     * Gets a {@link Person}.
+     *
+     * @return the Person
+     */
+    Person getPerson();
 
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
-
-    public Person getRandomPerson() {
-        List<Long> allIds = personRepository.findAllIds();
-        int index = ThreadLocalRandom.current().nextInt(allIds.size());
-        Long randomId = allIds.get(index);
-        return personRepository.findOne(randomId);
-    }
-
-    public String getRandomName() {
-        Person person = getRandomPerson();
-        return person.getFullName();
-    }
+    /**
+     * Gets the name of a Person.
+     *
+     * @return the name
+     */
+    String getName();
 }

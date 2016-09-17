@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CloudConfigExampleClientApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CloudConfigExampleClientApplication.class, args);
-	}
+    /**
+     * Entry point.
+     *
+     * @param args command line
+     */
+    public static void main(final String[] args) {
+        SpringApplication.run(CloudConfigExampleClientApplication.class, args);
+    }
 }

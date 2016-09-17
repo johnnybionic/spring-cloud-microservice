@@ -1,1 +1,0 @@
-A small Spring Cloud Eureka server

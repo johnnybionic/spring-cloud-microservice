@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Implementation using Hystrix.
- *
+ * <p>
  * Created by johnny on 05/08/2016.
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -19,7 +19,7 @@ public class HystrixAssignmentService implements AssignmentService {
     private final AssignmentClient assignmentClient;
 
     @Autowired
-    public HystrixAssignmentService(AssignmentClient assignmentClient) {
+    public HystrixAssignmentService(final AssignmentClient assignmentClient) {
         this.assignmentClient = assignmentClient;
     }
 
@@ -29,6 +29,12 @@ public class HystrixAssignmentService implements AssignmentService {
         return assignmentClient.getAssignment();
     }
 
+    /**
+     * Gets the default assignment if the service method is not available,
+     * e.g. if a circuit breaker is active.
+     *
+     * @return the default assignment.
+     */
     private String getDefaultAssignment() {
         return DEFAULT_ASSIGNMENT;
     }

@@ -12,6 +12,7 @@ lucky-word: test-horseshoe
 another-word: test-daredevil
 ---
 #ConfigurationProperties example
+# prefix = "sample"
 sample:
   firstWord: test-first
   second-word: test-second

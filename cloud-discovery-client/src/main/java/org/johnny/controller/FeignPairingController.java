@@ -22,15 +22,15 @@ public class FeignPairingController extends AbstractPairingController {
     private final PersonClient personClient;
 
     @Autowired
-    public FeignPairingController(AssignmentClient assignmentClient,
-                                  PersonClient personClient) {
+    public FeignPairingController(final AssignmentClient assignmentClient,
+                                  final PersonClient personClient) {
         this.assignmentClient = assignmentClient;
         this.personClient = personClient;
     }
 
     @Override
-    protected String service(String service, URI personPath) {
-        if (service.equals(this.personServiceName)) {
+    protected String service(final String service, final URI personPath) {
+        if (service.equals(this.getPersonServiceName())) {
             return personClient.getName();
         }
         else {

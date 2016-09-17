@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 /**
  * A version of the service that uses Hystrix. The main call is intended to fail, so
  * that the fallback is invoked.
- *
+ * <p>
  * Created by johnny on 05/08/2016.
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -24,7 +24,7 @@ public class HystrixPersonService implements PersonService {
     private final PersonClient personClient;
 
     @Autowired
-    public HystrixPersonService(PersonClient personClient) {
+    public HystrixPersonService(final PersonClient personClient) {
         this.personClient = personClient;
     }
 
@@ -39,6 +39,11 @@ public class HystrixPersonService implements PersonService {
         return personClient.getNameThatDoesntWork();
     }
 
+    /**
+     * Default method that is invoked when getName() fails.
+     *
+     * @return the default name
+     */
     private String getDefaultName() {
         log.info("Default method invoked");
         return DEFAULT_NAME;
