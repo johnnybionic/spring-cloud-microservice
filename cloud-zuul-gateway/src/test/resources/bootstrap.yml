@@ -1,0 +1,23 @@
+---
+zuul:
+  prefix: /services
+#  routes:
+#    work:
+#      path: /api/**
+#      url: http://localhost:8080/person
+---
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 
+    enabled: false
+---
+spring:
+  profiles:
+    active: default
+  application:
+    name: cloud-zulu-gateway
+  cloud:
+    config:
+      uri:
+      enabled: false
