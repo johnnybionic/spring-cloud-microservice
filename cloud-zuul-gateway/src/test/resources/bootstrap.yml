@@ -9,7 +9,7 @@ zuul:
 eureka:
   client:
     serviceUrl:
-      defaultZone: 
+      defaultZone:
     enabled: false
 ---
 spring:
